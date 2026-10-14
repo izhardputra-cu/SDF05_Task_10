@@ -1,0 +1,75 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/izhar.dputra/Documents/1-IRD/20-Kuliah/23-Cakrawala-Ilkom/3_Semester 3/3_SDF05 - Software Development Fundamentals/tugas-ird/SDF05_Task_10/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /private/var/folders/xs/9tybxty54_q8jh_v45f1ntym0000gn/T/sdf10-mutasi-r15husyj
+configfile: pytest.ini
+testpaths: tests
+collecting ... collected 9 items
+
+tests/test_total.py::test_total_member[100-1-99.9] FAILED                [ 11%]
+tests/test_total.py::test_total_member[12500-2-24975] FAILED             [ 22%]
+tests/test_total.py::test_total_member[19.99-3-59.91003] FAILED          [ 33%]
+tests/test_total.py::test_total_non_member PASSED                        [ 44%]
+tests/test_total.py::test_total_zero_price[True] PASSED                  [ 55%]
+tests/test_total.py::test_total_zero_price[False] PASSED                 [ 66%]
+tests/test_total.py::test_total_invalid_input[-1-1-unit_price must not be negative] PASSED [ 77%]
+tests/test_total.py::test_total_invalid_input[100-0-quantity must be positive] PASSED [ 88%]
+tests/test_total.py::test_total_invalid_input[100--2-quantity must be positive] PASSED [100%]
+
+=================================== FAILURES ===================================
+________________________ test_total_member[100-1-99.9] _________________________
+
+unit_price = 100, quantity = 1, expected = 99.9
+
+    @pytest.mark.parametrize(
+        "unit_price, quantity, expected",
+        [(100, 1, 99.9), (12500, 2, 24975), (19.99, 3, 59.91003)],
+    )
+    def test_total_member(unit_price, quantity, expected):
+>       assert calculate_total(unit_price, quantity, True) == pytest.approx(expected)
+E       assert 111.00000000000001 == 99.9 ± 1.0e-04
+E         
+E         comparison failed
+E         Obtained: 111.00000000000001
+E         Expected: 99.9 ± 1.0e-04
+
+tests/test_total.py:11: AssertionError
+_______________________ test_total_member[12500-2-24975] _______________________
+
+unit_price = 12500, quantity = 2, expected = 24975
+
+    @pytest.mark.parametrize(
+        "unit_price, quantity, expected",
+        [(100, 1, 99.9), (12500, 2, 24975), (19.99, 3, 59.91003)],
+    )
+    def test_total_member(unit_price, quantity, expected):
+>       assert calculate_total(unit_price, quantity, True) == pytest.approx(expected)
+E       assert 27750.000000000004 == 24975 ± 0.024975
+E         
+E         comparison failed
+E         Obtained: 27750.000000000004
+E         Expected: 24975 ± 0.024975
+
+tests/test_total.py:11: AssertionError
+_____________________ test_total_member[19.99-3-59.91003] ______________________
+
+unit_price = 19.99, quantity = 3, expected = 59.91003
+
+    @pytest.mark.parametrize(
+        "unit_price, quantity, expected",
+        [(100, 1, 99.9), (12500, 2, 24975), (19.99, 3, 59.91003)],
+    )
+    def test_total_member(unit_price, quantity, expected):
+>       assert calculate_total(unit_price, quantity, True) == pytest.approx(expected)
+E       assert 66.56670000000001 == 59.91003 ± 6.0e-05
+E         
+E         comparison failed
+E         Obtained: 66.56670000000001
+E         Expected: 59.91003 ± 6.0e-05
+
+tests/test_total.py:11: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_total.py::test_total_member[100-1-99.9] - assert 111.000000...
+FAILED tests/test_total.py::test_total_member[12500-2-24975] - assert 27750.0...
+FAILED tests/test_total.py::test_total_member[19.99-3-59.91003] - assert 66.5...
+========================= 3 failed, 6 passed in 0.03s ==========================
