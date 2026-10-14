@@ -20,3 +20,10 @@ Kode acuan mengikuti soal Sesi 10 tanpa mengubah aturan bisnisnya.
 
 Pengerjaan dimulai dari fondasi proyek, dilanjutkan bagian masing-masing anggota.
 Bukti pengujian lengkap diperbarui setelah seluruh bagian digabung.
+
+## Hasil sementara
+
+Bagian Izhar sudah diuji: empat fungsi test total menghasilkan sembilan kasus
+lulus. Tiga mutasi (diskon, pajak, dan validasi kuantitas) juga berhasil dideteksi.
+Rinciannya ada di `docs/hasil-mutasi.md` dan `bukti/`.
+Bagian Deva dan Miftahhul menyusul melalui PR masing-masing.
