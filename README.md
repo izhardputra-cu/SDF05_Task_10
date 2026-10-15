@@ -18,12 +18,26 @@ Kode acuan mengikuti soal Sesi 10 tanpa mengubah aturan bisnisnya.
 - `docs/`: jawaban analisis dan hasil pengujian mutasi.
 - `bukti/`: keluaran pengujian.
 
-Pengerjaan dimulai dari fondasi proyek, dilanjutkan bagian masing-masing anggota.
-Bukti pengujian lengkap diperbarui setelah seluruh bagian digabung.
+## Hasil akhir
 
-## Hasil sementara
+Seluruh bagian anggota sudah digabung. Pengujian menghasilkan **14 fungsi test
+/ 29 kasus lulus**, dan ketiga mutasi berhasil terdeteksi.
+`pricing.py` tetap sama dengan kode acuan awal.
 
-Bagian Izhar sudah diuji: empat fungsi test total menghasilkan sembilan kasus
-lulus. Tiga mutasi (diskon, pajak, dan validasi kuantitas) juga berhasil dideteksi.
-Rinciannya ada di `docs/hasil-mutasi.md` dan `bukti/`.
-Bagian Deva dan Miftahhul menyusul melalui PR masing-masing.
+| Artefak | Berkas |
+| --- | --- |
+| Kode acuan | [pricing.py](pricing.py) |
+| Unit test | [tests/](tests/) |
+| Keluaran `pytest -v` seluruh test | [bukti/pytest-v.txt](bukti/pytest-v.txt) |
+| Tabel dan bukti tiga mutasi | [docs/hasil-mutasi.md](docs/hasil-mutasi.md) |
+| Analisis nomor 1 dan 6 | [docs/analisis-deva.md](docs/analisis-deva.md) |
+| Analisis nomor 2 dan 5 | [docs/analisis-miftahhul.md](docs/analisis-miftahhul.md) |
+| Analisis nomor 3 dan 4 | [docs/analisis-izhar.md](docs/analisis-izhar.md) |
+
+Test mencakup subtotal, penolakan harga negatif dan kuantitas tidak valid,
+diskon anggota, pajak, total, serta isi struk termasuk baris baru terakhir.
+Fitur PyTest yang digunakan adalah `parametrize`, `raises`, `approx`, dan `tmp_path`.
+Pengujian memakai Python 3.9.6 dan PyTest 8.4.2.
+
+`bukti/pytest-izhar.txt` disimpan sebagai riwayat pengujian bagian Izhar.
+Hasil akhir kelompok mengacu pada `bukti/pytest-v.txt` dan bukti mutasi terbaru.

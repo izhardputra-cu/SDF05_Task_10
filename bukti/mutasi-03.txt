@@ -1,22 +1,75 @@
 ============================= test session starts ==============================
 platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/izhar.dputra/Documents/1-IRD/20-Kuliah/23-Cakrawala-Ilkom/3_Semester 3/3_SDF05 - Software Development Fundamentals/tugas-ird/SDF05_Task_10/.venv/bin/python
 cachedir: .pytest_cache
-rootdir: /private/var/folders/xs/9tybxty54_q8jh_v45f1ntym0000gn/T/sdf10-mutasi-rjbkfg5q
+rootdir: /private/var/folders/xs/9tybxty54_q8jh_v45f1ntym0000gn/T/sdf10-mutasi-final-z9v7bb4d
 configfile: pytest.ini
 testpaths: tests
-collecting ... collected 9 items
+collecting ... collected 29 items
 
-tests/test_total.py::test_total_member[100-1-99.9] PASSED                [ 11%]
-tests/test_total.py::test_total_member[12500-2-24975] PASSED             [ 22%]
-tests/test_total.py::test_total_member[19.99-3-59.91003] PASSED          [ 33%]
-tests/test_total.py::test_total_non_member PASSED                        [ 44%]
-tests/test_total.py::test_total_zero_price[True] PASSED                  [ 55%]
-tests/test_total.py::test_total_zero_price[False] PASSED                 [ 66%]
-tests/test_total.py::test_total_invalid_input[-1-1-unit_price must not be negative] PASSED [ 77%]
-tests/test_total.py::test_total_invalid_input[100-0-quantity must be positive] FAILED [ 88%]
+tests/test_subtotal_discount.py::test_subtotal[100-2-200] PASSED         [  3%]
+tests/test_subtotal_discount.py::test_subtotal[12500-3-37500] PASSED     [  6%]
+tests/test_subtotal_discount.py::test_subtotal[19.99-3-59.97] PASSED     [ 10%]
+tests/test_subtotal_discount.py::test_subtotal_zero_price PASSED         [ 13%]
+tests/test_subtotal_discount.py::test_subtotal_negative_price PASSED     [ 17%]
+tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[0] FAILED [ 20%]
+tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[-1] FAILED [ 24%]
+tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[-5] FAILED [ 27%]
+tests/test_subtotal_discount.py::test_member_discount[200-True-180] PASSED [ 31%]
+tests/test_subtotal_discount.py::test_member_discount[200-False-200] PASSED [ 34%]
+tests/test_subtotal_discount.py::test_member_discount[59.97-True-53.973] PASSED [ 37%]
+tests/test_subtotal_discount.py::test_member_discount[0-True-0] PASSED   [ 41%]
+tests/test_subtotal_discount.py::test_member_discount[0-False-0] PASSED  [ 44%]
+tests/test_tax_receipt.py::test_add_tax[100-111] PASSED                  [ 48%]
+tests/test_tax_receipt.py::test_add_tax[180-199.8] PASSED                [ 51%]
+tests/test_tax_receipt.py::test_add_tax[53.973-59.91003] PASSED          [ 55%]
+tests/test_tax_receipt.py::test_add_tax_zero PASSED                      [ 58%]
+tests/test_tax_receipt.py::test_receipt_single_line PASSED               [ 62%]
+tests/test_tax_receipt.py::test_receipt_multiple_lines PASSED            [ 65%]
+tests/test_tax_receipt.py::test_receipt_empty_lines PASSED               [ 68%]
+tests/test_total.py::test_total_member[100-1-99.9] PASSED                [ 72%]
+tests/test_total.py::test_total_member[12500-2-24975] PASSED             [ 75%]
+tests/test_total.py::test_total_member[19.99-3-59.91003] PASSED          [ 79%]
+tests/test_total.py::test_total_non_member PASSED                        [ 82%]
+tests/test_total.py::test_total_zero_price[True] PASSED                  [ 86%]
+tests/test_total.py::test_total_zero_price[False] PASSED                 [ 89%]
+tests/test_total.py::test_total_invalid_input[-1-1-unit_price must not be negative] PASSED [ 93%]
+tests/test_total.py::test_total_invalid_input[100-0-quantity must be positive] FAILED [ 96%]
 tests/test_total.py::test_total_invalid_input[100--2-quantity must be positive] FAILED [100%]
 
 =================================== FAILURES ===================================
+______________________ test_subtotal_invalid_quantity[0] _______________________
+
+quantity = 0
+
+    @pytest.mark.parametrize("quantity", [0, -1, -5])
+    def test_subtotal_invalid_quantity(quantity):
+        with pytest.raises(ValueError, match="quantity must be positive"):
+>           calculate_subtotal(100, quantity)
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_subtotal_discount.py:26: Failed
+______________________ test_subtotal_invalid_quantity[-1] ______________________
+
+quantity = -1
+
+    @pytest.mark.parametrize("quantity", [0, -1, -5])
+    def test_subtotal_invalid_quantity(quantity):
+        with pytest.raises(ValueError, match="quantity must be positive"):
+>           calculate_subtotal(100, quantity)
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_subtotal_discount.py:26: Failed
+______________________ test_subtotal_invalid_quantity[-5] ______________________
+
+quantity = -5
+
+    @pytest.mark.parametrize("quantity", [0, -1, -5])
+    def test_subtotal_invalid_quantity(quantity):
+        with pytest.raises(ValueError, match="quantity must be positive"):
+>           calculate_subtotal(100, quantity)
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_subtotal_discount.py:26: Failed
 __________ test_total_invalid_input[100-0-quantity must be positive] ___________
 
 unit_price = 100, quantity = 0, message = 'quantity must be positive'
@@ -50,6 +103,9 @@ E           Failed: DID NOT RAISE <class 'ValueError'>
 
 tests/test_total.py:32: Failed
 =========================== short test summary info ============================
+FAILED tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[0] - F...
+FAILED tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[-1] - ...
+FAILED tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[-5] - ...
 FAILED tests/test_total.py::test_total_invalid_input[100-0-quantity must be positive]
 FAILED tests/test_total.py::test_total_invalid_input[100--2-quantity must be positive]
-========================= 2 failed, 7 passed in 0.03s ==========================
+========================= 5 failed, 24 passed in 0.05s =========================

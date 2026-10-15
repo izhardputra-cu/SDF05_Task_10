@@ -1,22 +1,90 @@
 ============================= test session starts ==============================
 platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/izhar.dputra/Documents/1-IRD/20-Kuliah/23-Cakrawala-Ilkom/3_Semester 3/3_SDF05 - Software Development Fundamentals/tugas-ird/SDF05_Task_10/.venv/bin/python
 cachedir: .pytest_cache
-rootdir: /private/var/folders/xs/9tybxty54_q8jh_v45f1ntym0000gn/T/sdf10-mutasi-33rrkmjv
+rootdir: /private/var/folders/xs/9tybxty54_q8jh_v45f1ntym0000gn/T/sdf10-mutasi-final-cr3nrrk3
 configfile: pytest.ini
 testpaths: tests
-collecting ... collected 9 items
+collecting ... collected 29 items
 
-tests/test_total.py::test_total_member[100-1-99.9] FAILED                [ 11%]
-tests/test_total.py::test_total_member[12500-2-24975] FAILED             [ 22%]
-tests/test_total.py::test_total_member[19.99-3-59.91003] FAILED          [ 33%]
-tests/test_total.py::test_total_non_member FAILED                        [ 44%]
-tests/test_total.py::test_total_zero_price[True] PASSED                  [ 55%]
-tests/test_total.py::test_total_zero_price[False] PASSED                 [ 66%]
-tests/test_total.py::test_total_invalid_input[-1-1-unit_price must not be negative] PASSED [ 77%]
-tests/test_total.py::test_total_invalid_input[100-0-quantity must be positive] PASSED [ 88%]
+tests/test_subtotal_discount.py::test_subtotal[100-2-200] PASSED         [  3%]
+tests/test_subtotal_discount.py::test_subtotal[12500-3-37500] PASSED     [  6%]
+tests/test_subtotal_discount.py::test_subtotal[19.99-3-59.97] PASSED     [ 10%]
+tests/test_subtotal_discount.py::test_subtotal_zero_price PASSED         [ 13%]
+tests/test_subtotal_discount.py::test_subtotal_negative_price PASSED     [ 17%]
+tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[0] PASSED [ 20%]
+tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[-1] PASSED [ 24%]
+tests/test_subtotal_discount.py::test_subtotal_invalid_quantity[-5] PASSED [ 27%]
+tests/test_subtotal_discount.py::test_member_discount[200-True-180] PASSED [ 31%]
+tests/test_subtotal_discount.py::test_member_discount[200-False-200] PASSED [ 34%]
+tests/test_subtotal_discount.py::test_member_discount[59.97-True-53.973] PASSED [ 37%]
+tests/test_subtotal_discount.py::test_member_discount[0-True-0] PASSED   [ 41%]
+tests/test_subtotal_discount.py::test_member_discount[0-False-0] PASSED  [ 44%]
+tests/test_tax_receipt.py::test_add_tax[100-111] FAILED                  [ 48%]
+tests/test_tax_receipt.py::test_add_tax[180-199.8] FAILED                [ 51%]
+tests/test_tax_receipt.py::test_add_tax[53.973-59.91003] FAILED          [ 55%]
+tests/test_tax_receipt.py::test_add_tax_zero PASSED                      [ 58%]
+tests/test_tax_receipt.py::test_receipt_single_line PASSED               [ 62%]
+tests/test_tax_receipt.py::test_receipt_multiple_lines PASSED            [ 65%]
+tests/test_tax_receipt.py::test_receipt_empty_lines PASSED               [ 68%]
+tests/test_total.py::test_total_member[100-1-99.9] FAILED                [ 72%]
+tests/test_total.py::test_total_member[12500-2-24975] FAILED             [ 75%]
+tests/test_total.py::test_total_member[19.99-3-59.91003] FAILED          [ 79%]
+tests/test_total.py::test_total_non_member FAILED                        [ 82%]
+tests/test_total.py::test_total_zero_price[True] PASSED                  [ 86%]
+tests/test_total.py::test_total_zero_price[False] PASSED                 [ 89%]
+tests/test_total.py::test_total_invalid_input[-1-1-unit_price must not be negative] PASSED [ 93%]
+tests/test_total.py::test_total_invalid_input[100-0-quantity must be positive] PASSED [ 96%]
 tests/test_total.py::test_total_invalid_input[100--2-quantity must be positive] PASSED [100%]
 
 =================================== FAILURES ===================================
+____________________________ test_add_tax[100-111] _____________________________
+
+amount = 100, expected = 111
+
+    @pytest.mark.parametrize(
+        "amount, expected", [(100, 111), (180, 199.8), (53.973, 59.91003)],
+    )
+    def test_add_tax(amount, expected):
+>       assert add_tax(amount) == pytest.approx(expected)
+E       assert 112.00000000000001 == 111 ± 1.1e-04
+E
+E         comparison failed
+E         Obtained: 112.00000000000001
+E         Expected: 111 ± 1.1e-04
+
+tests/test_tax_receipt.py:10: AssertionError
+___________________________ test_add_tax[180-199.8] ____________________________
+
+amount = 180, expected = 199.8
+
+    @pytest.mark.parametrize(
+        "amount, expected", [(100, 111), (180, 199.8), (53.973, 59.91003)],
+    )
+    def test_add_tax(amount, expected):
+>       assert add_tax(amount) == pytest.approx(expected)
+E       assert 201.60000000000002 == 199.8 ± 2.0e-04
+E
+E         comparison failed
+E         Obtained: 201.60000000000002
+E         Expected: 199.8 ± 2.0e-04
+
+tests/test_tax_receipt.py:10: AssertionError
+________________________ test_add_tax[53.973-59.91003] _________________________
+
+amount = 53.973, expected = 59.91003
+
+    @pytest.mark.parametrize(
+        "amount, expected", [(100, 111), (180, 199.8), (53.973, 59.91003)],
+    )
+    def test_add_tax(amount, expected):
+>       assert add_tax(amount) == pytest.approx(expected)
+E       assert 60.449760000000005 == 59.91003 ± 6.0e-05
+E
+E         comparison failed
+E         Obtained: 60.449760000000005
+E         Expected: 59.91003 ± 6.0e-05
+
+tests/test_tax_receipt.py:10: AssertionError
 ________________________ test_total_member[100-1-99.9] _________________________
 
 unit_price = 100, quantity = 1, expected = 99.9
@@ -28,7 +96,7 @@ unit_price = 100, quantity = 1, expected = 99.9
     def test_total_member(unit_price, quantity, expected):
 >       assert calculate_total(unit_price, quantity, True) == pytest.approx(expected)
 E       assert 100.80000000000001 == 99.9 ± 1.0e-04
-E         
+E
 E         comparison failed
 E         Obtained: 100.80000000000001
 E         Expected: 99.9 ± 1.0e-04
@@ -45,7 +113,7 @@ unit_price = 12500, quantity = 2, expected = 24975
     def test_total_member(unit_price, quantity, expected):
 >       assert calculate_total(unit_price, quantity, True) == pytest.approx(expected)
 E       assert 25200.000000000004 == 24975 ± 0.024975
-E         
+E
 E         comparison failed
 E         Obtained: 25200.000000000004
 E         Expected: 24975 ± 0.024975
@@ -62,7 +130,7 @@ unit_price = 19.99, quantity = 3, expected = 59.91003
     def test_total_member(unit_price, quantity, expected):
 >       assert calculate_total(unit_price, quantity, True) == pytest.approx(expected)
 E       assert 60.449760000000005 == 59.91003 ± 6.0e-05
-E         
+E
 E         comparison failed
 E         Obtained: 60.449760000000005
 E         Expected: 59.91003 ± 6.0e-05
@@ -73,15 +141,18 @@ ____________________________ test_total_non_member _____________________________
     def test_total_non_member():
 >       assert calculate_total(12500, 2, False) == pytest.approx(27750)
 E       assert 28000.000000000004 == 27750 ± 0.02775
-E         
+E
 E         comparison failed
 E         Obtained: 28000.000000000004
 E         Expected: 27750 ± 0.02775
 
 tests/test_total.py:15: AssertionError
 =========================== short test summary info ============================
+FAILED tests/test_tax_receipt.py::test_add_tax[100-111] - assert 112.00000000...
+FAILED tests/test_tax_receipt.py::test_add_tax[180-199.8] - assert 201.600000...
+FAILED tests/test_tax_receipt.py::test_add_tax[53.973-59.91003] - assert 60.4...
 FAILED tests/test_total.py::test_total_member[100-1-99.9] - assert 100.800000...
 FAILED tests/test_total.py::test_total_member[12500-2-24975] - assert 25200.0...
 FAILED tests/test_total.py::test_total_member[19.99-3-59.91003] - assert 60.4...
 FAILED tests/test_total.py::test_total_non_member - assert 28000.000000000004...
-========================= 4 failed, 5 passed in 0.03s ==========================
+========================= 7 failed, 22 passed in 0.05s =========================
